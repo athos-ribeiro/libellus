@@ -1,0 +1,30 @@
+<h2>Listing Flyers</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Image path</th>
+      <th>Start date</th>
+      <th>Expiration date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for flyer <- @flyers do %>
+    <tr>
+      <td><%= flyer.image_path %></td>
+      <td><%= flyer.start_date %></td>
+      <td><%= flyer.expiration_date %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: organization_flyer_path(@conn, @organization_id, :show, flyer), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: organization_flyer_path(@conn, @organization_id, :edit, flyer), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: organization_flyer_path(@conn, @organization_id, :delete, flyer), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Flyer", to: organization_flyer_path(@conn, @organization_id, :new) %></span>

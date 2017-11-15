@@ -1,0 +1,23 @@
+<h2>Show Flyer</h2>
+
+<ul>
+
+  <li>
+    <strong>Image path:</strong>
+    <%= @flyer.image_path %>
+  </li>
+
+  <li>
+    <strong>Start date:</strong>
+    <%= @flyer.start_date %>
+  </li>
+
+  <li>
+    <strong>Expiration date:</strong>
+    <%= @flyer.expiration_date %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: organization_flyer_path(@conn, @organization_id, :edit, @flyer) %></span>
+<span><%= link "Back", to: organization_flyer_path(@conn, @organization_id, :index) %></span>

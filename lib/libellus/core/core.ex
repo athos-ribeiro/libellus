@@ -101,4 +101,101 @@ defmodule Libellus.Core do
   def change_organization(%Organization{} = organization) do
     Organization.changeset(organization, %{})
   end
+
+  alias Libellus.Core.Flyer
+
+  @doc """
+  Returns the list of flyers.
+
+  ## Examples
+
+      iex> list_flyers()
+      [%Flyer{}, ...]
+
+  """
+  def list_flyers(organization_id) when is_integer(organization_id) do
+    query = from f in Flyer, where: f.organization_id == ^organization_id
+    Repo.all(query)
+  end
+
+  @doc """
+  Gets a single flyer.
+
+  Raises `Ecto.NoResultsError` if the Flyer does not exist.
+
+  ## Examples
+
+      iex> get_flyer!(123)
+      %Flyer{}
+
+      iex> get_flyer!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_flyer!(id), do: Repo.get!(Flyer, id)
+
+  @doc """
+  Creates a flyer.
+
+  ## Examples
+
+      iex> create_flyer(%{field: value})
+      {:ok, %Flyer{}}
+
+      iex> create_flyer(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_flyer(attrs \\ %{}) do
+    %Flyer{}
+    |> Flyer.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a flyer.
+
+  ## Examples
+
+      iex> update_flyer(flyer, %{field: new_value})
+      {:ok, %Flyer{}}
+
+      iex> update_flyer(flyer, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_flyer(%Flyer{} = flyer, attrs) do
+    flyer
+    |> Flyer.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Flyer.
+
+  ## Examples
+
+      iex> delete_flyer(flyer)
+      {:ok, %Flyer{}}
+
+      iex> delete_flyer(flyer)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_flyer(%Flyer{} = flyer) do
+    Repo.delete(flyer)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking flyer changes.
+
+  ## Examples
+
+      iex> change_flyer(flyer)
+      %Ecto.Changeset{source: %Flyer{}}
+
+  """
+  def change_flyer(%Flyer{} = flyer) do
+    Flyer.changeset(flyer, %{})
+  end
 end

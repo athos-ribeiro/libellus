@@ -17,7 +17,10 @@ defmodule LibellusWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/organizations", OrganizationController
+    resources "/organizations", OrganizationController do
+      resources "/flyers", FlyerController
+    end
+
   end
 
   # Other scopes may use custom stacks.
