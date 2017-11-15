@@ -16,8 +16,11 @@ defmodule LibellusWeb.FlyerController do
 
   defp store_img(img) do
     if img do
+        {:ok, content} = File.read(img.path)
+        img_hash = :crypto.hash(:md5, content) |> Base.encode16
         extension = Path.extname(img.filename)
-        File.cp(upload.path, "/tmp/#{img_hash}.#{extension}")
+        img_path = "/tmp/#{img_hash}#{extension}"
+        File.cp(img.path, img_path)
         {:ok, img_path}
     else
         :error
