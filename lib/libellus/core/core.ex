@@ -7,6 +7,7 @@ defmodule Libellus.Core do
   alias Libellus.Repo
 
   alias Libellus.Core.Organization
+  alias Libellus.Core.Flyer
 
   @doc """
   Returns the list of organizations.
@@ -102,7 +103,6 @@ defmodule Libellus.Core do
     Organization.changeset(organization, %{})
   end
 
-  alias Libellus.Core.Flyer
 
   @doc """
   Returns the list of flyers.
@@ -113,7 +113,7 @@ defmodule Libellus.Core do
       [%Flyer{}, ...]
 
   """
-  def list_flyers(organization_id) when is_integer(organization_id) do
+  def list_flyers(organization_id) do
     query = from f in Flyer, where: f.organization_id == ^organization_id
     Repo.all(query)
   end

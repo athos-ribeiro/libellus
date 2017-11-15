@@ -79,8 +79,10 @@ defmodule Libellus.CoreTest do
     @invalid_attrs %{expiration_date: nil, image_path: nil, start_date: nil}
 
     def flyer_fixture(attrs \\ %{}) do
+      org = organization_fixture()
       {:ok, flyer} =
         attrs
+        |> Map.put(:organization_id, org.id)
         |> Enum.into(@valid_attrs)
         |> Core.create_flyer()
 
@@ -89,7 +91,8 @@ defmodule Libellus.CoreTest do
 
     test "list_flyers/0 returns all flyers" do
       flyer = flyer_fixture()
-      assert Core.list_flyers() == [flyer]
+      org_id = flyer.organization_id
+      assert Core.list_flyers(org_id) == [flyer]
     end
 
     test "get_flyer!/1 returns the flyer with given id" do
@@ -98,7 +101,8 @@ defmodule Libellus.CoreTest do
     end
 
     test "create_flyer/1 with valid data creates a flyer" do
-      assert {:ok, %Flyer{} = flyer} = Core.create_flyer(@valid_attrs)
+      attrs = Map.put(@valid_attrs, :organization_id, organization_fixture().id)
+      assert {:ok, %Flyer{} = flyer} = Core.create_flyer(attrs)
       assert flyer.expiration_date == ~D[2010-04-17]
       assert flyer.image_path == "some image_path"
       assert flyer.start_date == ~D[2010-04-17]

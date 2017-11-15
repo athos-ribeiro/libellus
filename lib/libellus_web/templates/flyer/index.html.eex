@@ -18,13 +18,13 @@
       <td><%= flyer.expiration_date %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: organization_flyer_path(@conn, @organization_id, :show, flyer), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: organization_flyer_path(@conn, @organization_id, :edit, flyer), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: organization_flyer_path(@conn, @organization_id, :delete, flyer), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: organization_flyer_path(@conn, :show, @organization_id, flyer), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: organization_flyer_path(@conn, :edit, @organization_id, flyer), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: organization_flyer_path(@conn, :delete, @organization_id, flyer), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Flyer", to: organization_flyer_path(@conn, @organization_id, :new) %></span>
+<span><%= link "New Flyer", to: organization_flyer_path(@conn, :new, @organization_id) %></span>

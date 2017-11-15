@@ -1,5 +1,5 @@
 <h2>New Flyer</h2>
 
-<%= render "form.html", Map.put(assigns, :action, organization_flyer_path(@conn, @organization_id,  :create)) %>
+<%= render "form.html", Map.put(assigns, :action, organization_flyer_path(@conn, :create, @organization_id)) %>
 
-<span><%= link "Back", to: organization_flyer_path(@conn, @organization_id,  :index) %></span>
+<span><%= link "Back", to: organization_flyer_path(@conn, :index, @organization_id) %></span>

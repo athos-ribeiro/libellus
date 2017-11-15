@@ -17,7 +17,7 @@ defmodule Libellus.Core.Flyer do
   @doc false
   def changeset(%Flyer{} = flyer, attrs) do
     flyer
-    |> cast(attrs, [:image_path, :start_date, :expiration_date])
-    |> validate_required([:image_path, :start_date, :expiration_date])
+    |> cast(attrs, [:organization_id, :image_path, :start_date, :expiration_date])
+    |> validate_required([:organization_id, :image_path, :start_date, :expiration_date])
   end
 end

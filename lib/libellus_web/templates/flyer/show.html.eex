@@ -19,5 +19,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: organization_flyer_path(@conn, @organization_id, :edit, @flyer) %></span>
-<span><%= link "Back", to: organization_flyer_path(@conn, @organization_id, :index) %></span>
+<span><%= link "Edit", to: organization_flyer_path(@conn, :edit, @organization_id, @flyer) %></span>
+<span><%= link "Back", to: organization_flyer_path(@conn, :index, @organization_id) %></span>
