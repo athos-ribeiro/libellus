@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :libellus, LibellusWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 4000, protocol_options: [max_request_line_length: 8192, max_header_value_length: 8192]],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
