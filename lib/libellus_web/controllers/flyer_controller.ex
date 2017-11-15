@@ -14,8 +14,24 @@ defmodule LibellusWeb.FlyerController do
     render(conn, "new.html", changeset: changeset, organization_id: organization_id)
   end
 
+  defp store_img(img) do
+    if img do
+        extension = Path.extname(img.filename)
+        File.cp(upload.path, "/tmp/#{img_hash}.#{extension}")
+        {:ok, img_path}
+    else
+        :error
+    end
+  end
+
   def create(conn, %{"organization_id" => organization_id, "flyer" => flyer_params}) do
+    img = case store_img(flyer_params["flyer_file"]) do
+        {:ok, img_path} -> img_path
+        :error -> nil
+    end
+    flyer_params = Map.put(flyer_params, "image_path", img)
     case Core.create_flyer(Map.put(flyer_params, "organization_id", organization_id)) do
+    # if we do not have a "flyer_file", we do not want to create a new flyer
       {:ok, flyer} ->
         conn
         |> put_flash(:info, "Flyer created successfully.")
