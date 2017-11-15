@@ -1,0 +1,33 @@
+<h2>Show Organization</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @organization.name %>
+  </li>
+
+  <li>
+    <strong>Logo:</strong>
+    <%= @organization.logo %>
+  </li>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @organization.address %>
+  </li>
+
+  <li>
+    <strong>Lat:</strong>
+    <%= @organization.lat %>
+  </li>
+
+  <li>
+    <strong>Long:</strong>
+    <%= @organization.long %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: organization_path(@conn, :edit, @organization) %></span>
+<span><%= link "Back", to: organization_path(@conn, :index) %></span>
